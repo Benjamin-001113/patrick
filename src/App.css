@@ -1,38 +1,415 @@
-.App {
-  text-align: center;
+
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #151b29;
+  background: linear-gradient(
+    180deg,
+    #fffdf3 0%,
+    #ffffff 65%,
+    #f7fbfd 100%
+  );
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  font: inherit;
 }
 
-.App-header {
-  background-color: #282c34;
+.page {
   min-height: 100vh;
+  padding: 32px 16px;
+}
+
+.quiz-card {
+  width: 100%;
+  max-width: 744px;
+  margin: 0 auto;
+  padding: 62px 50px;
+  border: 1px solid #f6e8a0;
+  border-radius: 32px;
+  text-align: center;
+  background: rgba(255, 253, 243, 0.45);
+}
+
+.countdown {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 14px 25px;
+  border-radius: 40px;
+  background: #ff9d00;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 7px #00000018;
+}
+
+.countdown strong {
+  white-space: nowrap;
+}
+
+.timer-icon {
+  font-size: 27px;
+}
+
+.greeting {
+  position: relative;
+  width: 280px;
+  height: 220px;
+  margin: 30px auto 12px;
+}
+
+.ndewo,
+.biko {
+  position: absolute;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.ndewo {
+  top: 12px;
+  left: -12px;
+  color: #ad4e00;
+}
+
+.biko {
+  right: -12px;
+  bottom: 32px;
+  color: #c9a98f;
+}
+
+.illustration {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 186px;
+  height: 186px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #fff3c4;
+}
+
+.cup {
+  position: relative;
+  width: 43px;
+  height: 61px;
+  margin-top: 3px;
+  border-radius: 8px 8px 14px 14px;
+  background: #f9a20a;
+  border-top: 6px solid #a65008;
+  transform: rotate(3deg);
+  box-shadow: inset -5px 0 #e98a00;
+}
+
+.cup::before {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 5px;
+  width: 32px;
+  height: 10px;
+  border-radius: 50%;
+  background: #98430b;
+}
+
+.cup span {
+  color: #97460a;
+  font-size: 37px;
+  line-height: 43px;
+}
+
+h1 {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 38px;
+  line-height: 1.25;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  margin: 18px 0 28px;
+  color: #984509;
+  font-size: 21px;
+}
+
+.participants {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  padding: 8px 17px;
+  border: 1px solid #f5edce;
+  border-radius: 40px;
+  background: white;
+  box-shadow: 0 2px 4px #0000000b;
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  margin-left: -7px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #fff0c9;
+  color: #8c460b;
+  font-weight: bold;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.avatar:nth-child(3) {
+  background: #fce9d6;
+}
+
+.avatar:nth-child(4) {
+  background: #fff5b7;
+}
+
+.avatar.you {
+  background: #ff9d00;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.participants strong {
+  font-size: 16px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.instructions {
+  margin: 0 auto 40px;
+  padding: 18px 20px;
+  border: 1px solid #f5e9b0;
+  border-radius: 22px;
+  background: #fffefa;
+  text-align: left;
+}
+
+.instructions p {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 13px;
+  color: #424956;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.instructions p:last-child {
+  margin-bottom: 0;
+}
+
+.bullet {
+  margin-top: 1px;
+  color: #ff9d00;
+  font-size: 15px;
+}
+
+.time-blocks {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-height: 83px;
+  padding: 10px 4px;
+  border: 1px solid #f5e9b0;
+  border-radius: 22px;
+  background: #fffefa;
+  color: #914208;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.time-block:hover {
+  transform: translateY(-2px);
+}
+
+.time-block strong {
+  font-size: 14px;
+}
+
+.time-block span {
+  font-size: 13px;
+}
+
+.time-block.active {
+  border-color: #ff9d00;
+  background: #ff9d00;
+  color: white;
+  box-shadow: 0 4px 7px #00000018;
+}
+
+.time-block.completed {
+  border-color: #eeeeee;
+  background: white;
+  color: #969eac;
+}
+
+.checkmark {
+  font-size: 22px !important;
+}
+
+.check-again,
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 82%;
+  min-height: 62px;
+  margin: 0 auto 16px;
+  border-radius: 40px;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.check-again {
+  border: none;
+  background: #e5e7eb;
+  color: #9ba3b0;
+  cursor: not-allowed;
+}
+
+.check-again span {
+  font-size: 23px;
+}
+
+.back-button {
+  border: 1px solid #f5e9a0;
+  background: white;
+  color: #914208;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: #fff6d9;
+}
+
+/* Responsive design for mobile phones */
+@media (max-width: 600px) {
+  .page {
+    padding: 12px 8px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .quiz-card {
+    padding: 30px 16px;
+    border-radius: 22px;
+  }
+
+  .countdown {
+    gap: 8px;
+    padding: 12px 15px;
+    font-size: 15px;
+  }
+
+  .timer-icon {
+    font-size: 22px;
+  }
+
+  .greeting {
+    width: 230px;
+    height: 195px;
+    margin-top: 25px;
+  }
+
+  .illustration {
+    width: 155px;
+    height: 155px;
+  }
+
+  .ndewo {
+    left: 0;
+  }
+
+  .biko {
+    right: 0;
+    bottom: 22px;
+  }
+
+  h1 {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .participants {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .participants strong {
+    font-size: 13px;
+  }
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .instructions {
+    padding: 16px 12px;
+    margin-bottom: 28px;
+  }
+
+  .instructions p {
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .time-blocks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .time-block {
+    min-height: 70px;
+    border-radius: 15px;
+  }
+
+  .time-block strong {
+    font-size: 12px;
+  }
+
+  .check-again,
+  .back-button {
+    width: 100%;
+    min-height: 54px;
+    font-size: 14px;
   }
 }
